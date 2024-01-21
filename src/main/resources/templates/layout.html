@@ -1,0 +1,17 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/normalize.css" th:href="@{/css/normalize.css}">
+  <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+  <title>掲示板</title>
+</head>
+<body>
+  <div id="wrap">
+    <header th:replace="common.html :: header"></header>
+    <main th:replace="main.html"></main>
+    <footer th:replace="common.html :: footer"></footer>
+  </div>
+</body>
+</html>

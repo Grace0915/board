@@ -1,0 +1,224 @@
+@charset "utf-8";
+
+/* --- normalize --- */
+img {
+  vertical-align: middle;
+}
+/* --- normalize --- */
+
+ul > li {
+  list-style-type: none;
+}
+
+.clearfix:after {
+  display: block;
+  content: "";
+  clear: both;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+body {
+  background-color: #efefef;
+  font-size: 14px;
+  color: #333;
+
+}
+
+#wrap {
+  width: 920px;
+  margin: 0 auto;
+}
+
+nav {
+  background-color: #fff;
+  padding: 2px 0;
+}
+
+nav > ul > li {
+  float: left;
+  padding: 0 30px;
+}
+
+nav > ul > li > a {
+  color: #333;
+  text-decoration: none;
+}
+
+#form > dl > dt, #form > dl > dd {
+  float: left;
+  margin: 8px 0;
+}
+
+#form > dl > dt {
+  width: 180px;
+  padding: 10px 0;
+  clear: both;
+  font-size: 18px;
+  padding: 10px 0;
+}
+
+#form > dl > dd > div > span {
+  display: block;
+}
+
+#form > dl > dd > div > input, #form > dl > dd > div > textarea {
+  width: 480px;
+}
+
+#body {
+  height: 150px;
+}
+
+#form button {
+  background-color: #009cd3;
+  color: #ffffff;
+  font-size: 20px;
+  width: 120px;
+  display: block;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 5px;
+  border: 3px solid #009cd3;
+  margin: 8px 0 16px 180px;
+}
+
+#form button:hover {
+  background-color: #ffffff;
+  color: #009cd3;
+  cursor: pointer;
+}
+
+#form > dl > dt > label.required:after {
+  content: " * ";
+  color: #ff0000;
+}
+
+#posts {
+  background-color: #fff;
+  padding: 8px;
+}
+
+#posts ul {
+  padding-inline-start: 0;
+}  
+
+#posts article > ul > li > pre.body {
+  font-size: 16px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+#posts article > ul > li > div.buttons {
+  padding: 8px;
+  margin-left: 60%;
+}
+
+#posts article > ul > li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 16px;
+  font-family: 'Bitter', serif;
+  width: 72px;
+  display: block;
+  text-align: center;
+  line-height: 24px;
+  border-radius: 4px;
+  float: left;
+}
+
+#posts article > ul > li a:hover {
+  text-decoration: none;
+  background-color: #ffffff;
+}
+
+#posts article > ul > li a:nth-child(1) {
+  margin-right: 16px;
+}
+
+.edit {
+  border: 3px solid #5ed400;
+  background-color: #5ed400;
+}
+
+.edit:hover {
+  color: #5ed400;
+}
+
+.delete {
+  border: 3px solid #f51a0a;
+  background-color: #f51a0a;
+}
+
+.delete:hover {
+  color: #f51a0a;
+}
+
+footer {
+  text-align: center;
+}
+
+.copyright {
+  margin-top: 40px;
+  color: #777;
+}
+
+.errs > li {
+  margin-bottom: 2px;
+}
+
+.err {
+  color: #ff0000;
+  font-size: 16px;
+}
+
+@media screen and (max-width: 767px) {
+  #wrap {
+    width: 96%;
+  }
+
+  nav {
+    padding: 2px 0;
+  }
+
+  nav > ul > li {
+    float: none;
+    padding: 0;
+    list-style-type: disc;
+  }
+
+  #form > dl > dt, #form > dl > dd {
+    float: none;
+  }
+
+  #form > dl > dd > div > input, #form > dl > dd > div > textarea, #form button {
+    width: 100%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  #form button {
+    margin-left: 0;
+  }
+
+  #posts article > ul > li a {
+    float: none;
+  }
+
+  #posts article > ul > li a:nth-child(1) {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+}

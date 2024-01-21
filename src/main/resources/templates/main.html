@@ -1,0 +1,42 @@
+<form method="POST" action="#" th:action="@{${path}}" th:object="${form}">
+  <input type="hidden" th:field="*{id}" />
+  <section id="form">
+    <dl class="clearfix">
+      <dt><label th:for="${#ids.next('author')}" class="required">投稿者</label></dt>
+      <dd>
+        <div><input type="text" th:field="*{author}" /></div>
+      </dd>
+      <dt><label th:for="${#ids.next('title')}" class="required">タイトル</label></dt>
+      <dd>
+        <div><input type="text" th:field="*{title}" /></div>
+      </dd>
+      <dt><label th:for="${#ids.next('body')}" class="required">内容</label></dt>
+      <dd>
+        <div><textarea th:field="*{body}"></textarea></div>
+      </dd>
+    </dl>
+    <button type="submit">送信</button>
+  </section>
+</form>
+<section id="posts">
+  <ul>
+    <li th:each="post : ${list}">
+      <article class="post">
+        <ul>
+          <li>
+            <h3 th:text="${post.author}" />
+          </li>
+          <li>
+            <h2 th:text="${post.title}" />
+          </li>
+          <li>
+            <pre class="body" th:text="${post.body}"></pre>
+          <li>
+          <li>
+            <div class="buttons clearfix"><a th:href="@{'edit?id={id}'(id=${post.id})}" class="edit">編集</a><a th:href="@{'delete?id={id}'(id=${post.id})}" class="delete">削除</a></div>
+          </li>
+        </ul>
+      </article>
+    </li>
+  </ul>
+</section>
