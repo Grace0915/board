@@ -33,20 +33,20 @@ public class BoardController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String index(Model model) {
 		model.addAttribute("form", PostFactory.newPost());
-		model = this.setList(model);
-		model.addAttribute("path", "create");
+		model = this.setList(model, "create");
 		return "layout";
 	}
 
 	/**
-	+   * 一覧を設定する。
-	+   *
-	+   * @param model モデル
-	+   * @return 一覧を設定したモデル
-	+   */
-	private Model setList(Model model) {
+	 * 一覧を設定する。
+	 *
+	 * @param model モデル
+	 * @return 一覧を設定したモデル
+	 */
+	private Model setList(Model model, String path) {
 		Iterable<Post> list = repository.findByDeletedFalseOrderByUpdatedDateDesc();
 		model.addAttribute("list", list);
+		model.addAttribute("path", path);
 		return model;
 	}
 
@@ -58,13 +58,13 @@ public class BoardController {
 	   * @return テンプレート
 	   */
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String create(@ModelAttribute("form") @Validated(GroupOrder.class) Post form, BindingResult result, Model model) {
+	public String create(@ModelAttribute("form") @Validated(GroupOrder.class) Post form, BindingResult result,
+			Model model) {
 		if (!result.hasErrors()) {
 			repository.saveAndFlush(PostFactory.createPost(form));
 			model.addAttribute("form", PostFactory.newPost());
 		}
-		model = this.setList(model);
-		model.addAttribute("path", "create");
+		model = this.setList(model, "create");
 		return "layout";
 	}
 
@@ -79,8 +79,7 @@ public class BoardController {
 	public String edit(@ModelAttribute("form") Post form, Model model) {
 		Optional<Post> post = repository.findById(form.getId());
 		model.addAttribute("form", post);
-		model = setList(model);
-		model.addAttribute("path", "update");
+		model = setList(model, "update");
 		return "layout";
 	}
 
@@ -92,14 +91,17 @@ public class BoardController {
 	* @return テンプレート
 	*/
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(@ModelAttribute("form") @Validated(GroupOrder.class) Post form, BindingResult result, Model model) {
+	public String update(@ModelAttribute("form") @Validated(GroupOrder.class) Post form, BindingResult result,
+			Model model) {
 		if (!result.hasErrors()) {
-            Optional<Post> post = repository.findById(form.getId());
-    		repository.saveAndFlush(PostFactory.updatePost(post.get(), form));
+			Optional<Post> post = repository.findById(form.getId());
+			repository.saveAndFlush(PostFactory.updatePost(post.get(), form));
+			model.addAttribute("form", PostFactory.newPost());
+			model = setList(model, "create");
+		} else {
+			model.addAttribute("form", form);
+			model = setList(model, "update");
 		}
-		model.addAttribute("form", PostFactory.newPost());
-		model = setList(model);
-		model.addAttribute("path", "create");
 		return "layout";
 	}
 
@@ -115,8 +117,7 @@ public class BoardController {
 		Optional<Post> post = repository.findById(form.getId());
 		repository.saveAndFlush(PostFactory.deletePost(post.get()));
 		model.addAttribute("form", PostFactory.newPost());
-		model = setList(model);
-		model.addAttribute("path", "create");
+		model = setList(model, "create");
 		return "layout";
 	}
 }
